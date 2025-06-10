@@ -11,6 +11,7 @@ type CPU struct {
 	SP uint8 
 	PC uint16
 	SR uint8
+    Memory [65536]uint8
 }
 
 const (
@@ -24,3 +25,20 @@ const (
     FlagNegative  = 1 << 7
 )
 
+type Status struct {
+    N,V,B,D,I,Z,C bool
+}
+
+func (cpu *CPU) step(){
+    opcode := cpu.Memory[cpu.PC]
+    switch opcdoe{
+    case 0xA9:
+        value:= cpu.Memory[cpu.PC+1]
+        cpu.A = value 
+        cpu.updateZeroAndStatusFlags(cpu.A)
+        cpu.PC += 2
+    default:
+        panic("unkown code")
+    }
+    
+}
